@@ -1,0 +1,47 @@
+name: Publish PARK FRAME
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: park-frame-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - name: Verify and import video files
+        run: python3 .github/scripts/sync_videos.py
+      - name: Preserve all videos in GitHub
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add media
+          if ! git diff --cached --quiet; then
+            git commit -m 'Store all verified portfolio video files'
+            git push origin HEAD:main
+          fi
+      - name: Prepare static site
+        run: |
+          mkdir _site
+          cp index.html app.js style.css .nojekyll _site/
+          cp -R assets media _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          retention-days: 1
+      - name: Publish site
+        id: deployment
+        uses: actions/deploy-pages@v4
