@@ -1,0 +1,7 @@
+AI brand SVGs: LobeHub Icons
+https://github.com/lobehub/lobe-icons
+ChatGPT: openai.svg
+Gemini: gemini-color.svg
+Claude: claude-color.svg
+Midjourney: midjourney.svg
+Brand marks belong to their respective owners.
