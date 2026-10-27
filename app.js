@@ -1,14 +1,14 @@
 'use strict';
 const categories={corporate:'기업·교육',brand:'광고·브랜드',social:'유튜브·SNS'};
 const works=[
- {id:6,title:'현장에서 만나는 안전',subtitle:'포스코이앤씨 · 안전 부동산 콘셉 영상',categories:['corporate'],duration:'06:50',format:'가로형 · 3840 × 2160',summary:'대화와 현장 방문, 체험 장면으로 안전 활동을 소개하는 기업 영상.',description:'포스코이앤씨의 건설 현장 안전 활동을 소개하는 콘텐츠입니다. 공사현장 촬영을 보조하고, 제공된 PSD 디자인을 활용해 영상 편집을 단독으로 담당했습니다.'},
- {id:4,title:'iPhone 15 Pro 제품 영상',subtitle:'제품 디테일과 타이포그래피',categories:['brand'],duration:'00:55',format:'가로형 · 1920 × 1080',summary:'어두운 배경과 금속성 질감, 다양한 제품 각도로 구성한 광고 형식의 영상.',description:'제품의 질감과 디테일을 보여주는 개인 3D 제품 영상입니다. Cinema 4D와 Octane Renderer를 사용하고, After Effects·Premiere Pro로 영상 작업을 진행했습니다.'},
- {id:1,title:'해상풍력, 타이포로 만나다',subtitle:'IU-GJ · 해상풍력발전기 샘플',categories:['social'],duration:'00:43',format:'가로형 · 1920 × 1080',summary:'큰 한글 타이포와 이미지, 해시태그를 활용한 SNS형 샘플 영상.',description:'풍력발전기 이미지와 질문형 문구에서 시작해 강조 타이포, 밈 이미지, 지역 관련 문구를 배치한 구성입니다. 밝은 바탕과 짙은 남색 화면, 노랑·분홍 강조색을 사용하는 표현을 확인할 수 있습니다.'},
- {id:7,title:'프로젝트 위기극복 사례',subtitle:'포스코이앤씨 · 방글라데시 마타바리 프로젝트',categories:['corporate'],duration:'05:50',format:'가로형 · 1920 × 1080',summary:'자재 유실 위기부터 대응과 공사 성과까지, 문제 해결 과정을 소개하는 사례 영상.',description:'방글라데시 마타바리 프로젝트의 위기 대응 과정을 소개하는 기업 사례 영상입니다. 제공받은 대본·스토리보드·PSD 디자인을 바탕으로 영상 편집을 전담했습니다.'},
- {id:2,title:'데이터 분석 도구를 이해하는 시간',subtitle:'자우미디어 · 알쏭달쏭 데이터 분석 도구, 모두 담았어!',categories:['corporate'],duration:'08:27',format:'가로형 · 1920 × 1080',summary:'강사 화면과 개념 그래픽으로 데이터베이스의 특징을 설명하는 교육 영상.',description:'강사 설명과 그래픽으로 데이터베이스 개념을 전달하는 교육 영상입니다. 제공받은 대본·스토리보드·PSD 디자인을 바탕으로 영상 편집을 전담했습니다.'},
- {id:8,title:'알폼의 구조와 시공 과정',subtitle:'포스코이앤씨 · 마인드셋 알폼',categories:['corporate'],duration:'13:26',format:'가로형 · 1920 × 1080',summary:'주요 부재부터 설치·마감·해체까지, 공정을 도식으로 풀어낸 기술 교육 영상.',description:'알폼의 구조와 시공 과정을 설명하는 기술 교육 영상입니다. 제공받은 대본·스토리보드·PSD 디자인을 바탕으로 영상 편집을 전담했습니다.'},
- {id:3,title:'제품 클로즈업 · 17초',subtitle:'가로형 숏폼',categories:['brand','social'],duration:'00:17',format:'가로형 · 1920 × 1080',summary:'제품 실루엣과 디테일, 짧은 문구로 구성한 17초 제품 영상.',description:'제품의 후면과 카메라, 측면을 짧은 길이 안에 담은 가로형 영상입니다. 후반에는 제품명과 슬로건, 로고 화면이 이어집니다.'},
- {id:5,title:'제품 티저 · 세로형',subtitle:'8초 티저',categories:['brand','social'],duration:'00:08',format:'세로형 · 1080 × 1920',portrait:true,summary:'제품 디테일과 간결한 문구를 담은 짧은 세로형 티저.',description:'세로 화면 안에서 어두운 제품 디테일과 제품명, 로고를 순서대로 보여주는 짧은 영상입니다.'}
+ {id:6,title:'현장에서 만나는 안전',subtitle:'포스코이앤씨 · 안전 부동산 콘셉 영상',categories:['corporate'],duration:'06:50',format:'가로형 · 3840 × 2160',summary:'대화와 현장 방문, 체험 장면으로 안전 활동을 소개하는 기업 영상.',description:"포스코이앤씨의 건설 현장 안전 활동을 소개하는 기업 콘텐츠입니다. 코스믹블랙 재직 당시 현장 촬영을 보조하고, 기존 기획과 제공된 PSD 디자인을 바탕으로 영상 편집을 단독으로 담당했습니다."},
+ {id:4,title:'iPhone 15 Pro 제품 영상',subtitle:'제품 디테일과 타이포그래피',categories:['brand'],duration:'00:55',format:'가로형 · 1920 × 1080',summary:'어두운 배경과 금속성 질감, 다양한 제품 각도로 구성한 광고 형식의 영상.',description:"iPhone 15 Pro의 형태와 표면 질감을 시각화한 개인 3D 제품 필름입니다. Cinema 4D·Octane Renderer로 제품 장면을 제작하고, After Effects·Premiere Pro로 후반 작업과 편집을 단독으로 진행했습니다."},
+ {id:1,title:'해상풍력, 타이포로 만나다',subtitle:'IU-GJ · 해상풍력발전기 샘플',categories:['social'],duration:'00:43',format:'가로형 · 1920 × 1080',summary:'큰 한글 타이포와 이미지, 해시태그를 활용한 SNS형 샘플 영상.',description:"해상풍력 콘텐츠를 예고편 형식으로 전달하는 외주 프로젝트입니다. 제공된 디자인과 스토리보드를 바탕으로 타이포그래피와 이미지 전환을 활용한 영상 편집을 담당했습니다."},
+ {id:7,title:'프로젝트 위기극복 사례',subtitle:'포스코이앤씨 · 방글라데시 마타바리 프로젝트',categories:['corporate'],duration:'05:50',format:'가로형 · 1920 × 1080',summary:'자재 유실 위기부터 대응과 공사 성과까지, 문제 해결 과정을 소개하는 사례 영상.',description:"방글라데시 마타바리 프로젝트의 위기 상황과 대응 과정을 전달하는 기업 사례 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인에 기반해 영상 편집을 전담했습니다."},
+ {id:2,title:'데이터 분석 도구를 이해하는 시간',subtitle:'자우미디어 · 알쏭달쏭 데이터 분석 도구, 모두 담았어!',categories:['corporate'],duration:'08:27',format:'가로형 · 1920 × 1080',summary:'강사 화면과 개념 그래픽으로 데이터베이스의 특징을 설명하는 교육 영상.',description:"강사의 설명과 개념 그래픽으로 데이터 분석 도구를 소개하는 교육 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인을 바탕으로 영상 편집을 전담했습니다."},
+ {id:8,title:'알폼의 구조와 시공 과정',subtitle:'포스코이앤씨 · 마인드셋 알폼',categories:['corporate'],duration:'13:26',format:'가로형 · 1920 × 1080',summary:'주요 부재부터 설치·마감·해체까지, 공정을 도식으로 풀어낸 기술 교육 영상.',description:"알폼의 주요 부재와 시공 과정을 설명하는 기술 교육 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인을 바탕으로 공정 설명을 영상으로 편집했습니다."},
+ {id:3,title:'제품 클로즈업 · 17초',subtitle:'가로형 숏폼',categories:['brand','social'],duration:'00:17',format:'가로형 · 1920 × 1080',summary:'제품 실루엣과 디테일, 짧은 문구로 구성한 17초 제품 영상.',description:"제품의 실루엣과 디테일을 17초 안에 담은 개인 3D 제품 숏폼입니다. 독립적으로 제작한 프로젝트로, 3D 장면 제작부터 후반 편집까지 단독으로 진행했습니다."},
+ {id:5,title:'제품 티저 · 세로형',subtitle:'8초 티저',categories:['brand','social'],duration:'00:08',format:'세로형 · 1080 × 1920',portrait:true,summary:'제품 디테일과 간결한 문구를 담은 짧은 세로형 티저.',description:"제품의 디테일과 간결한 타이포그래피로 구성한 8초 분량의 개인 3D 제품 티저입니다. 세로형 화면을 전제로 제작한 독립 프로젝트이며, 3D 제작과 영상 편집을 단독으로 담당했습니다."}
 ];
 works.forEach(work=>{
  work.tools=['Premiere Pro','After Effects'];
@@ -36,12 +36,59 @@ Object.assign(works.find(work=>work.id===1),{
  production:'해상풍력 콘텐츠 예고편 · 외주 작업',
  role:'제공된 디자인·스토리보드를 바탕으로 영상 편집',
  sources:'제공받은 디자인 · 스토리보드 활용',
- description:'해상풍력 콘텐츠를 예고편 형식으로 소개하는 외주 영상입니다. 큰 타이포그래피와 이미지, 해시태그를 활용해 내용을 전달합니다.'
+ description:"해상풍력 콘텐츠를 예고편 형식으로 전달하는 외주 프로젝트입니다. 제공된 디자인과 스토리보드를 바탕으로 타이포그래피와 이미지 전환을 활용한 영상 편집을 담당했습니다."
 });
-// Owner-confirmed: separate personal projects; shared corporate editing approach.
-[8,7,2].forEach(id=>Object.assign(works.find(work=>work.id===id),{
- process:'스토리보드를 작성한 작가와 소통하며 편집을 진행했습니다. 납기를 고려해 작업하고, 내용을 읽기 쉽도록 가독성에 중점을 두었습니다.'
-}));
+// Portfolio descriptions reflect owner-confirmed responsibilities; no performance claims.
+const projectCopy={
+ "6": {
+  "description": "포스코이앤씨의 건설 현장 안전 활동을 소개하는 기업 콘텐츠입니다. 코스믹블랙 재직 당시 현장 촬영을 보조하고, 기존 기획과 제공된 PSD 디자인을 바탕으로 영상 편집을 단독으로 담당했습니다.",
+  "role": "현장 촬영 보조 · 영상 편집 전담",
+  "collaboration": "촬영 현장에서 PD·작가와 편집 방향 협의",
+  "process": "현장 촬영 보조와 편집을 연계하며, 기획 의도가 화면에 일관되게 전달되도록 작업했습니다."
+ },
+ "2": {
+  "description": "강사의 설명과 개념 그래픽으로 데이터 분석 도구를 소개하는 교육 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인을 바탕으로 영상 편집을 전담했습니다.",
+  "role": "제공 스토리보드·PSD 기반 영상 편집 전담",
+  "collaboration": "스토리보드 작가와 편집 내용 조율",
+  "process": "설명 내용을 따라가기 쉽도록 자막과 그래픽의 가독성을 우선했습니다. 작가와 소통하며 정해진 납기 안에서 편집을 진행했습니다."
+ },
+ "7": {
+  "description": "방글라데시 마타바리 프로젝트의 위기 상황과 대응 과정을 전달하는 기업 사례 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인에 기반해 영상 편집을 전담했습니다.",
+  "role": "제공 스토리보드·PSD 기반 영상 편집 전담",
+  "collaboration": "스토리보드 작가와 편집 내용 조율",
+  "process": "위기 상황과 대응 내용의 흐름을 이해하기 쉽게 전달하는 데 중점을 두었습니다. 작가와 편집 내용을 조율하며 가독성과 납기를 함께 고려했습니다."
+ },
+ "8": {
+  "description": "알폼의 주요 부재와 시공 과정을 설명하는 기술 교육 콘텐츠입니다. 제공된 대본·스토리보드·PSD 디자인을 바탕으로 공정 설명을 영상으로 편집했습니다.",
+  "role": "제공 스토리보드·PSD 기반 영상 편집 전담",
+  "collaboration": "스토리보드 작가와 편집 내용 조율",
+  "process": "부재와 공정에 관한 설명을 읽고 따라가기 쉽도록 가독성에 중점을 두었습니다. 작가와 소통하며 기술 교육 콘텐츠의 편집을 진행했습니다."
+ },
+ "4": {
+  "description": "iPhone 15 Pro의 형태와 표면 질감을 시각화한 개인 3D 제품 필름입니다. Cinema 4D·Octane Renderer로 제품 장면을 제작하고, After Effects·Premiere Pro로 후반 작업과 편집을 단독으로 진행했습니다.",
+  "role": "3D 제품 장면 제작 · 모션그래픽 · 영상 편집",
+  "production": "개인 창작 · 3D 제품 필름",
+  "process": "재질과 조명, 카메라 연출로 제품의 디테일을 표현하고 타이포그래피와 편집으로 장면을 연결했습니다."
+ },
+ "3": {
+  "description": "제품의 실루엣과 디테일을 17초 안에 담은 개인 3D 제품 숏폼입니다. 독립적으로 제작한 프로젝트로, 3D 장면 제작부터 후반 편집까지 단독으로 진행했습니다.",
+  "role": "3D 제품 장면 제작 · 모션그래픽 · 영상 편집",
+  "production": "개인 창작 · 가로형 제품 숏폼",
+  "process": "후면·카메라·측면 등 제품의 특징을 짧은 컷으로 구성하고, 제품명과 타이포그래피로 마무리했습니다."
+ },
+ "5": {
+  "description": "제품의 디테일과 간결한 타이포그래피로 구성한 8초 분량의 개인 3D 제품 티저입니다. 세로형 화면을 전제로 제작한 독립 프로젝트이며, 3D 제작과 영상 편집을 단독으로 담당했습니다.",
+  "role": "3D 제품 장면 제작 · 모션그래픽 · 영상 편집",
+  "production": "개인 창작 · 세로형 제품 티저",
+  "process": "짧은 러닝타임 안에서 제품 디테일과 제품명·로고가 순차적으로 드러나도록 세로 화면을 구성했습니다."
+ },
+ "1": {
+  "description": "해상풍력 콘텐츠를 예고편 형식으로 전달하는 외주 프로젝트입니다. 제공된 디자인과 스토리보드를 바탕으로 타이포그래피와 이미지 전환을 활용한 영상 편집을 담당했습니다.",
+  "role": "제공 디자인·스토리보드 기반 영상 편집",
+  "process": "강조 타이포그래피와 이미지, 해시태그를 연결해 짧은 예고편의 메시지와 화면 리듬을 구성했습니다."
+ }
+};
+works.forEach(work=>Object.assign(work,projectCopy[work.id]));
 const scenePoints={
  6:[{time:50,label:'대화 장면'},{time:110,label:'현장 안전표지'},{time:150,label:'안전 자료 소개'}],
  2:[{time:90,label:'강사와 설명 그래픽'},{time:160,label:'유형별 키워드'},{time:200,label:'개념 타이포그래피'}],
@@ -62,7 +109,7 @@ function seekScene(time){
  status.textContent=sceneTime(time)+' 위치로 이동했습니다. 재생 버튼으로 시청하세요.';
 }
 function projectDetails(work){
- const rows=[['프로젝트',work.production],['담당 작업',work.role],['협업',work.collaboration],['제공 자료',work.sources],['작업 과정',work.process],['사용 툴',work.tools.join(' · ')]];
+ const rows=[['제작 구분',work.production],['담당 범위',work.role],['협업 방식',work.collaboration],['제공 자료',work.sources],['표현·편집 방향',work.process],['사용 툴',work.tools.join(' · ')]];
  return rows.filter(([,value])=>value).map(([label,value])=>`<div class="project-credit"><dt>${label}</dt><dd>${value}</dd></div>`).join('');
 }
 const grid=document.querySelector('#work-grid');
