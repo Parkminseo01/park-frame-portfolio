@@ -15,6 +15,10 @@ html[data-portfolio="brand"]{--accent:#d4c9f1;--accent-ink:#302640}html[data-por
 html[data-portfolio="social"]{--accent:#ffd2b4;--accent-ink:#402b22}html[data-portfolio="social"][data-theme="light"]{--accent:#94451f;--accent-ink:#fff}.edition-social .hero-visual{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);align-items:center;gap:18px}.edition-social .hero-main{aspect-ratio:9/16;max-height:590px}.edition-social .hero-image-caption{padding:15px;display:block}.edition-social .film-watch{display:none}.edition-social .hero-strip{display:grid;grid-template-columns:1fr;gap:18px;margin:0}.edition-social .hero-strip button{aspect-ratio:1.15}.edition-social .hero-strip button>span{font-size:11px}.edition-social .hero-copy h1{font-size:clamp(38px,4.3vw,64px)}
 @media(max-width:760px){.edition-bar .shell{min-height:48px;gap:10px}.edition-bar strong{font-size:12px}.edition-bar p{font-size:8px;letter-spacing:.05em}.edition-corporate .hero,.edition-brand .hero{grid-template-columns:1fr;padding-block:34px;gap:30px}.edition-brand .hero-copy h1,.edition-social .hero-copy h1{font-size:clamp(33px,8.3vw,52px)}.edition-eyebrow{font-size:9px;margin-bottom:14px;letter-spacing:.1em}.edition-tags{margin-top:20px;gap:6px}.edition-tags li{font-size:10px;padding:4px 8px}.edition-social .hero-visual{gap:12px}.edition-social .hero-main{max-height:470px}.edition-social .hero-strip{gap:12px}.edition-social .hero-main .hero-image-caption #hero-film-title{font-size:13px}.edition-social .hero-main .film-caption-sub{font-size:10px}.edition-social .hero-strip button>span{font-size:10px;padding:9px}.edition-social .hero-image-caption{padding:11px}}
 '''
+css += """
+.edition-corporate .works,.edition-brand .works,.edition-social .works{padding-bottom:48px}.other-works{padding-bottom:72px;scroll-margin-top:170px}.other-works .section-heading{border-top:1px solid var(--line);padding-top:30px;margin-bottom:24px}.other-works h2{font-size:24px;letter-spacing:-.6px}.other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}.other-grid .work-card{padding-bottom:18px}.other-grid .card-title-row h3{font-size:17px;letter-spacing:-.3px;line-height:1.6}.other-grid .card-arrow{font-size:19px}.other-grid .card-project-label,.other-grid .card-credit{display:none}.other-grid .card-topline{margin:13px 0 8px}.other-grid .card-tags span{font-size:10px}.other-grid .card-duration{bottom:9px;right:9px}
+@media(max-width:760px){.other-works{padding-bottom:44px}.other-works h2{font-size:22px}.other-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}.other-grid .card-title-row h3{font-size:15px}.other-grid .card-topline{margin-top:10px}.other-grid .card-tags{gap:6px}.other-grid .card-tags span{font-size:10px;letter-spacing:0}.other-grid .card-tags span+span{padding-left:6px}.other-grid .card-duration{font-size:9px;padding:2px 5px}.other-grid .card-watch{font-size:9px;padding:3px 6px;left:7px;bottom:7px}}
+"""
 for edition,cfg in fields.items():
  page=base.replace('<html lang="ko">',f'<html lang="ko" data-portfolio="{edition}">').replace('<body>',f'<body class="edition-{edition}">')
  page=re.sub(r'<title>.*?</title>',f'<title>박민서 | {cfg["label"]} 포트폴리오 — PARK FRAME</title>',page)
@@ -34,13 +38,22 @@ for edition,cfg in fields.items():
  page=page.replace('src="../assets/work-6.jpg" alt="현장에서 만나는 안전 영상의 대표 장면"',f'src="../assets/work-{cfg["featured"][0]}.jpg" alt="{cfg["title"]} 영상의 대표 장면"',1)
  page=page.replace('id="hero-film-title">현장에서 만나는 안전','id="hero-film-title">'+cfg['title'],1).replace('id="hero-film-subtitle">촬영 보조 · 단독 편집','id="hero-film-subtitle">'+cfg['caption'],1)
  page=page.replace('작품<span class="heading-count">08</span>','작품<span class="heading-count">'+str(cfg['count']).zfill(2)+'</span>',1)
+ other_section=f'<section id="other-works" class="other-works shell" aria-labelledby="other-title"><div class="section-heading"><h2 id="other-title">그 외 작업<span class="heading-count">{str(8-cfg["count"]).zfill(2)}</span></h2></div><div class="other-grid" id="other-grid"></div></section>'
+ page=page.replace('<section class="about"',other_section+'<section class="about"',1)
  js=source.replace("'use strict';","'use strict';\nconst edition="+json.dumps(edition)+";",1)
  js=js.replace('grid.innerHTML=works.map(',"grid.innerHTML=works.filter(work=>work.categories.includes(edition)).map(",1)
  js=js.replace("let selectedCategory='all'","let selectedCategory=edition",1).replace('function setFilter(category){','function setFilter(category){category=edition;',1).replace("setFilter('all');","setFilter(edition);",1)
- js=js.replace('if(!work)return;currentId=id;','if(!work||!work.categories.includes(edition))return;currentId=id;',1)
+ card_line=next(line for line in source.splitlines() if line.startswith('grid.innerHTML=works.map('))
+ renderer=card_line[len('grid.innerHTML=works.map('):-len(").join('');")]
+ other_render="document.querySelector('#other-grid').innerHTML=works.filter(work=>!work.categories.includes(edition)).map("+renderer+").join('');"
+ js=js.replace('const portfolioViews={',other_render+'\nconst portfolioViews={',1)
+ js=js.replace("document.querySelectorAll('.work-card')","document.querySelectorAll('#work-grid .work-card')")
+ js=js.replace("document.querySelector('#project-info').innerHTML=projectDetails(work);const list=visibleWorks();","document.querySelector('#project-info').innerHTML=projectDetails(work);const list=work.categories.includes(edition)?visibleWorks():works.filter(item=>!item.categories.includes(edition));",1)
+ js=js.replace('function adjacent(delta){const list=visibleWorks();',"function adjacent(delta){const active=works.find(work=>work.id===currentId);const list=active?.categories.includes(edition)?visibleWorks():works.filter(work=>!work.categories.includes(edition));",1)
+ js=js.replace("index>=0?`${String(index+1)","index>=0?`${work.categories.includes(edition)?'':'그 외 작업 · '}${String(index+1)",1)
  js=js.replace('function workImage(id){','Object.assign(portfolioViews[edition],'+json.dumps({k:cfg[k] for k in ['headline','intro','caption','featured']},ensure_ascii=False)+');\nfunction workImage(id){',1)
  js=js.replace('`assets/work-','`../assets/work-').replace('src="assets/work-','src="../assets/work-').replace('`media/${id}/index.m3u8`','`../media/${id}/index.m3u8`')
- js=js.replace('work.categories.map(cat=>`<span>${categories[cat]}</span>`)','[edition].map(cat=>`<span>${categories[cat]}</span>`)')
+ js=js.replace('work.categories.map(cat=>`<span>${categories[cat]}</span>`)','(work.categories.includes(edition)?[edition]:work.categories).map(cat=>`<span>${categories[cat]}</span>`)')
  js=js.replace("(systemTheme.matches?'light':'dark')","("+json.dumps(cfg['default'])+")")
  assert '<script src="app.js"' not in page and 'grid.innerHTML=works.filter' in js and '../media/${id}' in js
  page=page.replace('</body>','<script>\n'+js+'\n</script></body>')
