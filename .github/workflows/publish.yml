@@ -23,20 +23,22 @@ jobs:
           fetch-depth: 1
       - name: Verify and import video files
         run: python3 .github/scripts/sync_videos.py
-      - name: Preserve all videos in GitHub
+      - name: Build focused portfolio sites
+        run: python3 .github/scripts/build_fields.py
+      - name: Preserve portfolio files in GitHub
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add media
+          git add media corporate brand social
           if ! git diff --cached --quiet; then
-            git commit -m 'Store all verified portfolio video files'
+            git commit -m 'Update focused portfolios and verified media'
             git push origin HEAD:main
           fi
       - name: Prepare static site
         run: |
           mkdir _site
           cp index.html app.js style.css .nojekyll _site/
-          cp -R assets media _site/
+          cp -R assets media corporate brand social _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
