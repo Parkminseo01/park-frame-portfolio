@@ -115,7 +115,7 @@ html[data-portfolio="social"]{--bg:#151719;--ink:#f3f3ee;--muted:#b8bfbe;--subtl
 const edition="corporate";
 const categories={corporate:'기업·교육',brand:'광고·브랜드',social:'유튜브·SNS'};
 const works=[
- {"id": 9, "title": "iPhone 18 Pro — 3D 콘셉트 티저", "subtitle": "개인 콘셉트 · 21.6초 세로형 티저", "categories": ["brand", "social"], "duration": "00:22", "format": "세로형 · 1080 × 1920 · 30fps · 21.6초", "portrait": true, "summary": "반사광과 제품 디테일로 전개하는 21.6초 콘셉트 티저.", "description": "어둠과 반사광으로 제품의 형태를 드러내는 개인 3D 콘셉트 티저입니다. 렌즈와 소재, 모서리의 디테일에서 후면 전체로 시선을 확장하고, 제품명으로 마무리하는 21.6초 세로형 영상으로 구성했습니다."},
+ {"id": 9, "title": "iPhone 18 Pro — 3D 콘셉트 티저", "subtitle": "AI 협업 · 21.6초 세로형 티저", "categories": ["brand", "social"], "duration": "00:22", "format": "세로형 · 1080 × 1920 · 30fps · 21.6초", "portrait": true, "summary": "반사광과 제품 디테일로 전개하는 21.6초 콘셉트 티저.", "description": "어둠과 반사광으로 제품의 형태를 드러내는 개인 3D 콘셉트 티저입니다. 렌즈와 소재, 모서리의 디테일에서 후면 전체로 시선을 확장하고, 제품명으로 마무리하는 21.6초 세로형 영상으로 구성했습니다."},
  {id:6,title:'현장에서 만나는 안전',subtitle:'포스코이앤씨 · 안전 부동산 콘셉 영상',categories:['corporate'],duration:'06:50',format:'가로형 · 3840 × 2160',summary:'대화와 현장 방문, 체험 장면으로 안전 활동을 소개하는 기업 영상.',description:"포스코이앤씨의 건설 현장 안전 활동을 소개하는 기업 콘텐츠입니다. 코스믹블랙 재직 당시 현장 촬영을 보조하고, 기존 기획과 제공된 PSD 디자인을 바탕으로 영상 편집을 단독으로 담당했습니다."},
  {id:4,title:'iPhone 15 Pro 제품 영상',subtitle:'제품 디테일과 타이포그래피',categories:['brand'],duration:'00:55',format:'가로형 · 1920 × 1080',summary:'어두운 배경과 금속성 질감, 다양한 제품 각도로 구성한 광고 형식의 영상.',description:"iPhone 15 Pro의 형태와 표면 질감을 시각화한 개인 3D 제품 필름입니다. Cinema 4D·Octane Renderer로 제품 장면을 제작하고, After Effects·Premiere Pro로 후반 작업과 편집을 단독으로 진행했습니다."},
  {id:1,title:'해상풍력, 타이포로 만나다',subtitle:'IU-GJ · 해상풍력발전기 샘플',categories:['social'],duration:'00:43',format:'가로형 · 1920 × 1080',summary:'큰 한글 타이포와 이미지, 해시태그를 활용한 SNS형 샘플 영상.',description:"해상풍력 콘텐츠를 예고편 형식으로 전달하는 외주 프로젝트입니다. 제공된 디자인과 스토리보드를 바탕으로 타이포그래피와 이미지 전환을 활용한 영상 편집을 담당했습니다."},
@@ -206,10 +206,12 @@ const projectCopy={
 works.forEach(work=>Object.assign(work,projectCopy[work.id]));
 // New concept teaser: only confirmed contribution is listed.
 Object.assign(works.find(work=>work.id===9),{
- production:'개인 콘셉트 프로젝트 · 비공식 팬메이드',
- role:'스토리보드 제작 · 티저 영상 제작',
- tools:[],
- process:'윤곽 → 렌즈 → 소재·모서리 → 후면 전체 → 제품명으로 이어지는 장면 흐름을 구성했습니다. 스토리보드에 컷별 시간과 카메라·반사광의 연출 방향을 정리했습니다.',
+ production:'AI 협업 기반 개인 콘셉트 프로젝트 · 비공식 팬메이드',
+ role:'ChatGPT·Codex를 활용한 Cinema 4D 제작 · 스토리보드·티저 제작',
+ tools:['Cinema 4D','ChatGPT','Codex'],
+ description:'ChatGPT·Codex와 협업하며 Cinema 4D로 제작한 개인 3D 콘셉트 티저입니다. AI를 제작 보조 도구로 활용해 제품의 윤곽과 렌즈·소재 디테일을 장면으로 구성하고, 21.6초 세로형 영상과 스토리보드로 정리했습니다.',
+ aiWorkflow:'ChatGPT와 제작 방향을 논의하고, Codex를 활용해 Cinema 4D 작업을 진행하는 방식으로 제작했습니다.',
+ process:'어둠 속 윤곽에서 렌즈·소재·모서리, 후면 전체로 시선을 확장하는 컷 흐름을 구성했습니다. 스토리보드에는 장면별 시간과 카메라·반사광의 연출 방향을 정리했습니다.',
  storyboard:'../assets/iphone18-storyboard.pdf'
 });
 const scenePoints={
@@ -233,14 +235,14 @@ function seekScene(time){
  status.textContent=sceneTime(time)+' 위치로 이동했습니다. 재생 버튼으로 시청하세요.';
 }
 function projectDetails(work){
- const rows=[['제작 구분',work.production],['담당 범위',work.role],['협업 방식',work.collaboration],['제공 자료',work.sources],['표현·편집 방향',work.process],['사용 툴',work.tools.join(' · ')]];
+ const rows=[['제작 구분',work.production],['담당 범위',work.role],['AI 활용 방식',work.aiWorkflow],['협업 방식',work.collaboration],['제공 자료',work.sources],['표현·편집 방향',work.process],['사용 툴',work.tools.join(' · ')]];
  const details=rows.filter(([,value])=>value).map(([label,value])=>`<div class="project-credit"><dt>${label}</dt><dd>${value}</dd></div>`).join('');
  const storyboard=work.storyboard?`<div class="project-credit"><dt>스토리보드</dt><dd><a class="storyboard-link" href="${work.storyboard}" target="_blank" rel="noopener">스토리보드 보기 · PDF ↗</a><p class="storyboard-note">9쪽 · 장면 구성과 연출 방향</p><div class="project-scene-grid">${['윤곽의 발견','소재의 디테일','후면 전체'].map((label,i)=>`<figure><img src="../assets/iphone18-scene-${i+1}.jpg" alt="${label} 대표 장면" loading="lazy"><figcaption>${label}</figcaption></figure>`).join('')}</div></dd></div>`:'';
  return details+storyboard;
 }
 const grid=document.querySelector('#work-grid');
-grid.innerHTML=works.filter(work=>work.categories.includes(edition)).map((work,index)=>`<article class="work-card" data-work-id="${work.id}"><button class="card-button open-work" data-work="${work.id}" aria-label="${work.title} 작품 열기"><div class="card-image ${work.portrait?'portrait':''}"><img src="../assets/work-${work.id}.jpg" alt="${work.title} 영상의 대표 장면" loading="lazy"><span class="card-watch" aria-hidden="true">▶ 영상 보기</span><span class="card-duration">${work.duration}</span></div><div class="card-topline"><div class="card-tags">${(work.categories.includes(edition)?[edition]:work.categories).map(cat=>`<span>${categories[cat]}</span>`).join('')}</div></div><p class="card-project-label">${work.subtitle}</p><p class="card-credit">${work.id===9?"개인 콘셉트 · 영상·스토리보드":[4,3,5].includes(work.id)?"개인 작업 · 3D 제품 영상":work.id===6?"회사 작업 · 촬영 보조·단독 편집":work.id===1?"외주 작업 · 영상 편집":"회사 작업 · 영상 편집 전담"}</p><div class="card-title-row"><h3>${work.title}</h3><span class="card-arrow" aria-hidden="true">↗</span></div></button></article>`).join('');
-document.querySelector('#other-grid').innerHTML=works.filter(work=>!work.categories.includes(edition)).map((work,index)=>`<article class="work-card" data-work-id="${work.id}"><button class="card-button open-work" data-work="${work.id}" aria-label="${work.title} 작품 열기"><div class="card-image ${work.portrait?'portrait':''}"><img src="../assets/work-${work.id}.jpg" alt="${work.title} 영상의 대표 장면" loading="lazy"><span class="card-watch" aria-hidden="true">▶ 영상 보기</span><span class="card-duration">${work.duration}</span></div><div class="card-topline"><div class="card-tags">${(work.categories.includes(edition)?[edition]:work.categories).map(cat=>`<span>${categories[cat]}</span>`).join('')}</div></div><p class="card-project-label">${work.subtitle}</p><p class="card-credit">${work.id===9?"개인 콘셉트 · 영상·스토리보드":[4,3,5].includes(work.id)?"개인 작업 · 3D 제품 영상":work.id===6?"회사 작업 · 촬영 보조·단독 편집":work.id===1?"외주 작업 · 영상 편집":"회사 작업 · 영상 편집 전담"}</p><div class="card-title-row"><h3>${work.title}</h3><span class="card-arrow" aria-hidden="true">↗</span></div></button></article>`).join('');
+grid.innerHTML=works.filter(work=>work.categories.includes(edition)).map((work,index)=>`<article class="work-card" data-work-id="${work.id}"><button class="card-button open-work" data-work="${work.id}" aria-label="${work.title} 작품 열기"><div class="card-image ${work.portrait?'portrait':''}"><img src="../assets/work-${work.id}.jpg" alt="${work.title} 영상의 대표 장면" loading="lazy"><span class="card-watch" aria-hidden="true">▶ 영상 보기</span><span class="card-duration">${work.duration}</span></div><div class="card-topline"><div class="card-tags">${(work.categories.includes(edition)?[edition]:work.categories).map(cat=>`<span>${categories[cat]}</span>`).join('')}</div></div><p class="card-project-label">${work.subtitle}</p><p class="card-credit">${work.id===9?"AI 협업 · 영상·스토리보드":[4,3,5].includes(work.id)?"개인 작업 · 3D 제품 영상":work.id===6?"회사 작업 · 촬영 보조·단독 편집":work.id===1?"외주 작업 · 영상 편집":"회사 작업 · 영상 편집 전담"}</p><div class="card-title-row"><h3>${work.title}</h3><span class="card-arrow" aria-hidden="true">↗</span></div></button></article>`).join('');
+document.querySelector('#other-grid').innerHTML=works.filter(work=>!work.categories.includes(edition)).map((work,index)=>`<article class="work-card" data-work-id="${work.id}"><button class="card-button open-work" data-work="${work.id}" aria-label="${work.title} 작품 열기"><div class="card-image ${work.portrait?'portrait':''}"><img src="../assets/work-${work.id}.jpg" alt="${work.title} 영상의 대표 장면" loading="lazy"><span class="card-watch" aria-hidden="true">▶ 영상 보기</span><span class="card-duration">${work.duration}</span></div><div class="card-topline"><div class="card-tags">${(work.categories.includes(edition)?[edition]:work.categories).map(cat=>`<span>${categories[cat]}</span>`).join('')}</div></div><p class="card-project-label">${work.subtitle}</p><p class="card-credit">${work.id===9?"AI 협업 · 영상·스토리보드":[4,3,5].includes(work.id)?"개인 작업 · 3D 제품 영상":work.id===6?"회사 작업 · 촬영 보조·단독 편집":work.id===1?"외주 작업 · 영상 편집":"회사 작업 · 영상 편집 전담"}</p><div class="card-title-row"><h3>${work.title}</h3><span class="card-arrow" aria-hidden="true">↗</span></div></button></article>`).join('');
 const portfolioViews={
  all:{order:[9,6,4,2,7,8,1,3,5],featured:[6,4,2],headline:'정보는 명확하게.<br>장면은 <span class="accent">인상 깊게.</span>',intro:'기업·교육 영상 편집 실무 경험을 바탕으로, 3D 제품 영상까지 제작합니다.',caption:'촬영 보조 · 단독 편집',heading:'작품'},
  corporate:{order:[2,8,7,6],featured:[2,8,7],headline:'복잡한 정보도<br><span class="accent">이해하기 쉽게.</span>',intro:'제공된 대본·디자인을 바탕으로 편집한 기업·교육 영상',caption:'교육 콘텐츠 · 영상 편집 전담',heading:'기업·교육 작품'},
